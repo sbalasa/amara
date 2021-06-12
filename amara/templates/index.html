@@ -8,18 +8,18 @@
 <body>
     <h1>Welcome to Amara</h1>
     <br/>
-    <form id="ajax_form" method="post">
+    <form id="ajax_form" onsubmit="return execute_ajax(this)" method="post">{% csrf_token %}
         <p>
             <label>Customer Name:</label>
-            <input type="text" name="name" size="25" required/>
+            <input type="text" id="name" name="name" size="25" required/>
         </p>
         <p>
             <label>Email:</label>
-            <input type="text" name="email" size="25" required/>
+            <input type="text" id="email" name="email" size="25" required/>
         </p>
         <p>
             <label>Subscription Type: </label>
-            <input list="subscriptions" name="subscriptions" size="25" required/>
+            <input list="subscriptions" id="input_subscriptions" name="subscriptions" size="25" required/>
             <datalist id="subscriptions">
                 <option value="Free">
                 <option value="Paid">
@@ -29,5 +29,19 @@
             <input type="submit" value="Register" style="margin-left: -85%" />
         </p>
     </form>
+    <table class="w3-card" id="table_data" style="position: relative; top: 40px; left: 50px">
+        <tr>
+            <th>Customer Name</th>
+            <th>Email Address</th>
+            <th>Subscription Type</th>
+        </tr>
+    </table>
 </body>
 {% endblock %}
+
+{% block javascripts %}
+
+<script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+console.log(" {{ complete_subscriptions | escapejs }} ")
+
+{% endblock javascripts %}

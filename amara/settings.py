@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'PCF'
+    'PCF.apps.PcfConfig'
 ]
 
 MIDDLEWARE = [

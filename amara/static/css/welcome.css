@@ -25,3 +25,33 @@ label {
 input { 
     display: table-cell;
 }
+
+
+#table_data {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	border-collapse: collapse;
+	width: 95%;
+	text-align: center;
+	font-size: 15px;
+	table-layout: auto;
+}
+#table_data td,
+#table_data th {
+	border: 1px solid #ddd;
+	padding: 8px;
+}
+#table_data tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+#table_data tr:hover {
+	background-color: #ddd;
+}
+#table_data th {
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: center;
+	background-color: rgb(14, 1, 37);
+	color: white;
+	font-size: 18px;
+	width: auto;
+}
