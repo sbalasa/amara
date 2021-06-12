@@ -14,7 +14,7 @@ function execute_ajax() {
             subscriptions: document.querySelector("#input_subscriptions").value
         }),
         success: function(res) {
-            let complete_subscriptions = JSON.parse("{{ complete_subscriptions | escap_js }}");
+            let complete_subscriptions = JSON.parse("{{ complete_subscriptions | escapejs }}");
             let table_data = document.getElementById("table_data");
             for (let i = 0; i < complete_subscriptions.length; i++) {
                 let row = document.createElement("TR");
