@@ -1,4 +1,27 @@
 body {
-	text-align: center;
-	background-color: whitesmoke;
+    text-align: center;
+    font-family: sans-serif;
+    color: whitesmoke;
+    font-size: 0.875rem;
+    font-weight: 300;
+    font-stretch: extra-expanded;
+	background-color: rgb(14, 1, 37);
+}
+
+#ajax_form {
+    margin-left: 35%;
+    display: table;
+    font-size: 1.2rem;
+}
+
+p { 
+    display: table-row;  
+}
+
+label { 
+    display: table-cell; 
+}
+
+input { 
+    display: table-cell;
 }

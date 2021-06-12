@@ -1,12 +1,33 @@
 {% load static %}
-
 {% block content%}
 <head>
-  <title>Amara</title>
-  <link rel="stylesheet" href="{% static "css/welcome.css" %}">
+    <title>Amara</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/welcome.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/w3.css' %}" />
 </head>
-
 <body>
     <h1>Welcome to Amara</h1>
+    <br/>
+    <form id="ajax_form" method="post">
+        <p>
+            <label>Customer Name:</label>
+            <input type="text" name="name" size="25" required/>
+        </p>
+        <p>
+            <label>Email:</label>
+            <input type="text" name="email" size="25" required/>
+        </p>
+        <p>
+            <label>Subscription Type: </label>
+            <input list="subscriptions" name="subscriptions" size="25" required/>
+            <datalist id="subscriptions">
+                <option value="Free">
+                <option value="Paid">
+                <option value="Pro">
+            </datalist>
+            <br/><br/>
+            <input type="submit" value="Register" style="margin-left: -85%" />
+        </p>
+    </form>
 </body>
 {% endblock %}
