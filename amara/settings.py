@@ -127,3 +127,4 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(
     BASE_DIR, "amara/static"
 )
+CSRF_COOKIE_NAME = "XCSRF-TOKEN"
