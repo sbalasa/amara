@@ -8,7 +8,7 @@
 <body>
     <h1>Welcome to Amara</h1>
     <br/>
-    <form id="ajax_form" onsubmit="return execute_ajax(this)" method="post">{% csrf_token %}
+    <form id="ajax_form" onsubmit="execute_ajax()" method="post" action="">{% csrf_token %}
         <p>
             <label>Customer Name:</label>
             <input type="text" id="name" name="name" size="25" required/>
@@ -42,6 +42,7 @@
 {% block javascripts %}
 
 <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 console.log(" {{ complete_subscriptions | escapejs }} ")
 
 {% endblock javascripts %}
