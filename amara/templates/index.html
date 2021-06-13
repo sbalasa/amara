@@ -8,7 +8,7 @@
 <body>
     <h1>Welcome to Amara</h1>
     <br/>
-    <form id="ajax_form" onsubmit="execute_ajax()" method="post" action="">{% csrf_token %}
+    <form id="ajax_form" onsubmit="execute_ajax();return false" method="post" action="">{% csrf_token %}
         <p>
             <label>Customer Name:</label>
             <input type="text" id="name" name="name" size="25" required/>
@@ -29,7 +29,7 @@
             <input type="submit" value="Register" style="margin-left: -85%" />
         </p>
     </form>
-    <table class="w3-card" id="table_data" style="position: relative; top: 40px; left: 50px">
+    <table id="table_data" style="position: relative; top: 40px; left: 50px">
         <tr>
             <th>Customer Name</th>
             <th>Email Address</th>
@@ -41,8 +41,30 @@
 
 {% block javascripts %}
 
+<script type="text/javascript">
+let complete_subscriptions = JSON.parse(" {{ complete_subscriptions | escapejs}} ".replace(/'/g,"\""));
+let table_data = document.getElementById("table_data");
+for (let i in complete_subscriptions) {
+    let row = document.createElement("TR");
+    row.className = "item";
+    let name = document.createElement("TD");
+    let email = document.createElement("TD");
+    let subscriptions = document.createElement("TD");
+    name.appendChild(document.createTextNode(complete_subscriptions[i].fields.name));
+    email.appendChild(
+        document.createTextNode(complete_subscriptions[i].fields.email)
+    );
+    subscriptions.appendChild(
+        document.createTextNode(complete_subscriptions[i].fields.subscriptions)
+    );
+    row.appendChild(name);
+    row.appendChild(email);
+    row.appendChild(subscriptions);
+    table_data.appendChild(row);
+}
+</script>
+
 <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/axios.js' %}"></script>
-console.log(" {{ complete_subscriptions | escapejs }} ")
 
 {% endblock javascripts %}

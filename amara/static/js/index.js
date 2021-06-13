@@ -9,22 +9,27 @@ function execute_ajax() {
     axios
         .post("/ajax_form", body)
         .then((response) => {
-            let complete_subscriptions = response.data;
+            let new_subscriptions = response.data;
             let table_data = document.getElementById("table_data");
-            for (let i = 0; i < complete_subscriptions.length; i++) {
-                let row = document.createElement("TR");
-                row.className = "item";
-                let name = document.createElement("TD");
-                let email = document.createElement("TD");
-                let subscriptions = document.createElement("TD");
-                name.appendChild(document.createTextNode(complete_subscriptions[i].fields.name));
-                email.appendChild(document.createTextNode(complete_subscriptions[i].fields.email));
-                subscriptions.appendChild(document.createTextNode(complete_subscriptions[i].fields.subscriptions));
-                row.appendChild(name);
-                row.appendChild(email);
-                row.appendChild(subscriptions);
-                table_data.appendChild(row);
-            }
+            let row = document.createElement("TR");
+            row.className = "item";
+            let name = document.createElement("TD");
+            let email = document.createElement("TD");
+            let subscriptions = document.createElement("TD");
+            name.appendChild(document.createTextNode(new_subscriptions.name));
+            email.appendChild(
+                document.createTextNode(new_subscriptions.email)
+            );
+            subscriptions.appendChild(
+                document.createTextNode(new_subscriptions.subscriptions)
+            );
+            row.appendChild(name);
+            row.appendChild(email);
+            row.appendChild(subscriptions);
+            table_data.appendChild(row);
+            document.getElementById("name").value = ""
+            document.getElementById("email").value = ""
+            document.getElementById("input_subscriptions").value = ""
         }, (error) => {
             console.log(error);
         });

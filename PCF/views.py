@@ -6,14 +6,17 @@ from django.core import serializers
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_protect
 
+
 @csrf_protect
 def index(request):
-    return render(request, "index.html")
+    complete_subscriptions = Subscriptions.objects.all()
+    complete_subscriptions = json.loads(serializers.serialize("json", complete_subscriptions))
+    return render(request, "index.html", {"complete_subscriptions": complete_subscriptions})
 
 @csrf_protect
 def ajax_form(request):
-    complete_subscriptions = Subscriptions.objects.all()
-    complete_subscriptions = json.loads(serializers.serialize("json", complete_subscriptions))
+    # complete_subscriptions = Subscriptions.objects.all()
+    # complete_subscriptions = json.loads(serializers.serialize("json", complete_subscriptions))
     if request.method == "POST":
         ajax_data = json.loads(request.body)
         name = ajax_data.get("name", None)
@@ -26,7 +29,11 @@ def ajax_form(request):
                 subscriptions=subscriptions
             )
             subscriptions_model.save()
-        return HttpResponse(
-            json.dumps({"complete_subscriptions": complete_subscriptions}),
-            content_type='application/json'
-        )
+            return HttpResponse(
+                json.dumps({
+                    "name": name,
+                    "email": email,
+                    "subscriptions": subscriptions
+                }),
+                content_type='application/json'
+            )
