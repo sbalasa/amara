@@ -1,37 +1,18 @@
-## Welcome to GitHub Pages
+# Amara
+Simple Django app demonstrating Ajax
 
-You can use the [editor on GitHub](https://github.com/sbalasa/amara/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### An AJAX form which creates a record with the following fields:
+- Customer Name
+- Email Address (must be a valid email address format)
+- Subscription Type (with the options: Free, Plus, Pro)
+- Displaying the records entered on each submission (it updates without needing to refresh the page).
+- Storing the records persistently using a Django model.
 
-### Markdown
+### Setup the environment
+- `pip3 install -r requirements.txt`
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/sbalasa/amara/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+### To Run
+- `python3 manage.py makemigrations`
+- `python3 manage.py migrate`
+- `python3 manage.py runserver 0.0.0.0:8000 --nostatic`
