@@ -1,3 +1,24 @@
+let complete_subscriptions = JSON.parse(" {{ complete_subscriptions | escapejs}} ".replace(/'/g, "\""));
+let table_data = document.getElementById("table_data");
+for (let i in complete_subscriptions) {
+    let row = document.createElement("TR");
+    row.className = "item";
+    let name = document.createElement("TD");
+    let email = document.createElement("TD");
+    let subscriptions = document.createElement("TD");
+    name.appendChild(document.createTextNode(complete_subscriptions[i].fields.name));
+    email.appendChild(
+        document.createTextNode(complete_subscriptions[i].fields.email)
+    );
+    subscriptions.appendChild(
+        document.createTextNode(complete_subscriptions[i].fields.subscriptions)
+    );
+    row.appendChild(name);
+    row.appendChild(email);
+    row.appendChild(subscriptions);
+    table_data.appendChild(row);
+}
+
 function execute_ajax() {
     let body = JSON.stringify({
         name: document.querySelector("#name").value,
