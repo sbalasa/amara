@@ -40,6 +40,7 @@ def ajax_form(request):
                 content_type='application/json'
             )
 
+
 def subscribe(request):
     submitted = False
     if request.method == 'POST':
@@ -54,25 +55,3 @@ def subscribe(request):
         if 'submitted' in request.GET:
             submitted = True
     return render(request, 'subscribe.html', {'form':form, 'submitted':submitted, 'title':'Contact Me'})
-
-# @csrf_protect
-# def ajax_form(request):
-#     # complete_subscriptions = Subscriptions.objects.all()
-#     # complete_subscriptions = json.loads(serializers.serialize("json", complete_subscriptions))
-#     if request.method == 'POST':
-#         form = SubscriptionForm(request.POST or None)
-#         if form.is_valid():
-#             form.save()
-#             return HttpResponse(
-#                 json.dumps({
-#                     "name": form.name,
-#                     "email": form.email,
-#                     "subscription": form.subscription
-#                 }),
-#                 content_type='application/json'
-#             )
-#     else:
-#         form = SubscriptionForm()
-#         if 'submitted' in request.GET:
-#             submitted = True
-#     return render(request, 'index.html', {'form':form, 'submitted':submitted, 'title':'Contact Me'})
