@@ -5,14 +5,14 @@ from .forms import SubscriptionForm
 
 from django.shortcuts import render
 from django.core import serializers
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.decorators.csrf import csrf_protect
 
 
 @csrf_protect
 def index(request):
     complete_subscriptions = Subscriptions.objects.all()
-    # complete_subscriptions = json.loads(serializers.serialize("json", complete_subscriptions))
+    complete_subscriptions = json.loads(serializers.serialize("json", complete_subscriptions))
     return render(request, "index.html", {"complete_subscriptions": complete_subscriptions})
 
 @csrf_protect
@@ -40,18 +40,28 @@ def ajax_form(request):
                 content_type='application/json'
             )
 
-
 def subscribe(request):
+    complete_subscriptions = Subscriptions.objects.all()
+    # complete_subscriptions = json.loads(serializers.serialize("json", complete_subscriptions))
     submitted = False
     if request.method == 'POST':
+        data  = {}
         form = SubscriptionForm(request.POST or None)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/subscribe?submitted=True')
-        else:
-            print(form.errors)
+            data['name'] = form.cleaned_data.get('name')
+            data['subscription'] = form.cleaned_data.get('subscription')
+            data['email'] = form.cleaned_data.get('email')
+            # return JsonResponse(data)
+            return HttpResponse(json.dumps(data), content_type='application/json')
     else:
         form = SubscriptionForm()
         if 'submitted' in request.GET:
             submitted = True
-    return render(request, 'subscribe.html', {'form':form, 'submitted':submitted, 'title':'Contact Me'})
+    context = {
+        'form':form,
+        'submitted':submitted,
+        'complete_subscriptions':complete_subscriptions
+    }
+    return render(request, 'subscribe.html', context)
+

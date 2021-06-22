@@ -125,6 +125,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(
-    BASE_DIR, "amara/static"
+    BASE_DIR, "staticfiles"
 )
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'amara/static')
+]
+
 CSRF_COOKIE_NAME = "XCSRF-TOKEN"

@@ -26,23 +26,15 @@
                 <option value="Pro">
             </datalist>
             <br/><br/>
-            
+            <input type="submit" value="Register" style="margin-left: -85%" />
         </p>
-        <p><input type="submit" value="Register"/></p>
     </form>
     <table id="table_data" style="position: relative; top: 40px; left: 50px">
         <tr>
-            <th style="background-color: aquamarine;">Customer Name</th>
-            <th style="background-color: rgb(189, 196, 193);">Email Address</th>
-            <th style="background-color: rgb(178, 218, 86);">Subscription Type</th>
+            <th>Customer Name</th>
+            <th>Email Address</th>
+            <th>Subscription Type</th>
         </tr>
-        {% for sub in complete_subscriptions %}
-        <tr>
-            <td>{{sub.name}}</td>
-            <td>{{sub.email}}</td>
-            <td>{{sub.subscription}}</td>
-        </tr>
-        {% endfor %}
     </table>
 </body>
 {% endblock %}
