@@ -1,11 +1,10 @@
 from django import forms
-from django.forms import ModelForm, Textarea
 from .models import Subscriptions
 
 class SubscriptionForm(forms.ModelForm):
     class Meta:
         model = Subscriptions
-        fields = '__all__'
+        fields = ("name", "email", "subscription",)
         labels = {
                     "subscription": "Subscription type",
                     "name": "Customer Name",

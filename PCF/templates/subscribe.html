@@ -1,5 +1,5 @@
 {% load static %}
-<!-- {% block content%} -->
+{% block content%}
 <head>
     <title>Amara</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/welcome.css' %}">
@@ -9,8 +9,7 @@
     <h1>Welcome to Amara</h1>
     <br/>
     <form id="ajax_form" onsubmit="execute_ajax();return false" method="post" action="">{% csrf_token %}
-        {{form.as_p}}
-        <!-- <p>
+        <p>
             <label>Customer Name:</label>
             <input type="text" id="name" name="name" size="25" required/>
         </p>
@@ -25,27 +24,20 @@
                 <option value="Free">
                 <option value="Paid">
                 <option value="Pro">
-            </datalist> -->
-            
-            <input type="submit" value="Register"  style="margin-top: 2rem;"/>
+            </datalist>
+            <br/><br/>
+            <input type="submit" value="Register" style="margin-left: -85%" />
         </p>
     </form>
     <table id="table_data" style="position: relative; top: 40px; left: 50px">
         <tr>
-            <th style="background-color: aquamarine;">Customer Name</th>
-            <th style="background-color: rgb(189, 196, 193);">Email Address</th>
-            <th style="background-color: rgb(178, 218, 86);">Subscription Type</th>
+            <th>Customer Name</th>
+            <th>Email Address</th>
+            <th>Subscription Type</th>
         </tr>
-        {% for sub in complete_subscriptions %}
-        <tr>
-            <td>{{sub.name}}</td>
-            <td>{{sub.email}}</td>
-            <td>{{sub.subscription}}</td>
-        </tr>
-        {% endfor %}
     </table>
 </body>
-<!-- {% endblock %} -->
+{% endblock %}
 
 {% block javascripts %}
 <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
